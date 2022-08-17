@@ -55,7 +55,13 @@ class DecodeMorse
     def decode_char(char)
         MORSE[char]
     end
+
+    def decode_word(morse) 
+        word = "" 
+        morse.split.each { |char| word += decode_char(char) } 
+        word 
+    end 
 end
 
 decoder = DecodeMorse.new
-puts(decoder.decode_char(".-"))
+p decoder.decode_word("-- -.--")

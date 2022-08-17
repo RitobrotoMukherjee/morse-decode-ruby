@@ -53,15 +53,22 @@ class DecodeMorse
     }
 
     def decode_char(char)
-        MORSE[char]
+        MORSE[char].upcase
     end
 
-    def decode_word(morse) 
-        word = "" 
-        morse.split.each { |char| word += decode_char(char) } 
-        word 
-    end 
+    def decode_word(morse)
+        word = ''
+        morse.split.each { |char| word += decode_char(char) }
+        word
+    end
+
+    def decode(message)
+        message.split('   ').map { |word| decode_word(word) }.join(' ')
+    end
+
 end
 
 decoder = DecodeMorse.new
-p decoder.decode_word("-- -.--")
+puts (decoder.decode_char('--'))
+puts (decoder.decode_word('-- -.--'))
+puts (decoder.decode('.-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...'))
